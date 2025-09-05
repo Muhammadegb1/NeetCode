@@ -4,24 +4,22 @@ class Solution {
      * @return {string[][]}
      */
     groupAnagrams(strs) {
-        
-        const mapArr = new Map();
-        for (let s of strs) {
-            const newArray = new Array(26).fill(0);
-            for (let c of s) {
-                newArray[c.charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
+        let mapArr = new Map();
+        for (const word of strs){
+            const arr = new Array(26).fill(0);
+            for (const char of word){
+                arr[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
             }
-            const key = newArray.join("#"); // מחרוזת מייצגת
-            if (!mapArr.has(key)) {
-                mapArr.set(key, [s]);   // נתחיל מערך
-            } else {
-                mapArr.get(key).push(s); // נוסיף קבוצה קיימת
+            let key = arr.join('#');
+            if (!mapArr.has(key)){
+                mapArr.set(key,[]);
             }
+            mapArr.get(key).push(word);
         }
-
         return [...mapArr.values()];
     }
 }
+
 
 const sol = new Solution();
 console.log(sol.groupAnagrams(["act","pots","tops","cat","stop","hat"]));
