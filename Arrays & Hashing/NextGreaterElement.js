@@ -17,8 +17,8 @@ class Solution {
                 stack.pop();
             }
 
-            nextGreater.set(num, stack.length === 0 ? -1 : stack[stack.length - 1]);
-            stack.push(num);
+            nextGreater.set(current, stack.length === 0 ? -1 : stack[stack.length - 1]);
+            stack.push(current);
         }
 
         return nums1.map(num => nextGreater.get(num));
